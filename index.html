@@ -13,13 +13,13 @@
   <!-- Script de burbujas -->
   <script src="script.js"></script>
 
-  <!-- Audio sin autoplay (solo loop) -->
+  <!-- Audio sin autoplay -->
   <audio id="bg-music" loop>
     <source src="recurso.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
-  <!-- Activador de música tras interacción del usuario (clic o toque) -->
+  <!-- Activador de reproducción automática después de interacción -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const music = document.getElementById("bg-music");
@@ -39,4 +39,3 @@
   </script>
 </body>
 </html>
-
