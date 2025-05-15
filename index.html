@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>❤mes-aniversario❤</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="message">te amo</div>
+  <div id="bubbles-text"></div>
+  <audio id="bg-music" autoplay loop>
+  <source src="https://www.youtube.com/watch?v=5TwAyUCJbl8" type="audio/mpeg">
+    </audio>
+  <script src="script.js"></script>
+  <script>
+    window.addEventListener('touchstart', () => {
+      const music = document.getElementById("bg-music");
+      music.play().catch((e) => {
+        console.log("Reproducción bloqueada hasta interacción");
+      });
+    });
+  </script>
+</body>
+</html>
