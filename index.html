@@ -10,49 +10,33 @@
   <div class="message">te amo</div>
   <div id="bubbles-text"></div>
 
-  <!-- Botón para activar música -->
-  <button id="playMusicBtn" style="
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 9999;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 10px;
-    background-color: #d63384;
-    color: white;
-    font-size: 16px;
-    cursor: pointer;
-  ">
-    Activar música
-  </button>
+  <!-- Script de burbujas -->
+  <script src="script.js"></script>
 
-  <!-- Audio sin autoplay -->
+  <!-- Audio sin autoplay (solo loop) -->
   <audio id="bg-music" loop>
     <source src="recurso.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
-  <!-- Script de burbujas -->
-  <script src="script.js"></script>
-
-  <!-- Activador de música al hacer clic -->
+  <!-- Activador de música tras interacción del usuario (clic o toque) -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const music = document.getElementById("bg-music");
-      const btn = document.getElementById("playMusicBtn");
 
       const activateAudio = () => {
-        music.play().then(() => {
-          btn.style.display = "none";
-        }).catch(err => {
-          console.log("Error al reproducir:", err);
+        music.play().catch(err => {
+          console.log("Reproducción bloqueada:", err);
         });
+
+        document.removeEventListener("click", activateAudio);
+        document.removeEventListener("touchstart", activateAudio);
       };
 
-      btn.addEventListener("click", activateAudio);
-      btn.addEventListener("touchstart", activateAudio);
+      document.addEventListener("click", activateAudio);
+      document.addEventListener("touchstart", activateAudio);
     });
   </script>
 </body>
 </html>
+
