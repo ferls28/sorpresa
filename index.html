@@ -1,37 +1,57 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>❤ Mes-Aniversario ❤</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="message">te amo</div>
   <div id="bubbles-text"></div>
 
-  <!-- Audio SIN autoplay -->
+  <!-- Botón para activar música -->
+  <button id="playMusicBtn" style="
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    background-color: #d63384;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+  ">
+    Activar música
+  </button>
+
+  <!-- Audio sin autoplay -->
   <audio id="bg-music" loop>
-    <source src="audio/recurso.mp3" type="audio/mpeg">
+    <source src="recurso.mp3" type="audio/mpeg" />
     Tu navegador no soporta audio HTML5.
   </audio>
 
   <!-- Script de burbujas -->
   <script src="script.js"></script>
 
-  <!-- Activador de reproducción automática después de interacción -->
+  <!-- Activador de música al hacer clic -->
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       const music = document.getElementById("bg-music");
+      const btn = document.getElementById("playMusicBtn");
 
       const activateAudio = () => {
-        music.play().catch(err => console.log("Reproducción bloqueada:", err));
-        document.removeEventListener('click', activateAudio);
-        document.removeEventListener('touchstart', activateAudio);
+        music.play().then(() => {
+          btn.style.display = "none";
+        }).catch(err => {
+          console.log("Error al reproducir:", err);
+        });
       };
 
-      document.addEventListener('click', activateAudio);
-      document.addEventListener('touchstart', activateAudio);
+      btn.addEventListener("click", activateAudio);
+      btn.addEventListener("touchstart", activateAudio);
     });
   </script>
 </body>
