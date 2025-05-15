@@ -1,23 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>❤mes-aniversario❤</title>
+  <title>❤ Mes-Aniversario ❤</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div class="message">te amo</div>
   <div id="bubbles-text"></div>
+
+  <!-- Audio -->
   <audio id="bg-music" autoplay loop>
-  <source src="https://www.youtube.com/watch?v=5TwAyUCJbl8" type="audio/mpeg">
-    </audio>
+    <source src="recurso.mp3" type="audio/mpeg">
+    Tu navegador no soporta audio HTML5.
+  </audio>
+
+  <!-- Script de burbujas -->
   <script src="script.js"></script>
+
+  <!-- Activador de reproducción automática después de interacción -->
   <script>
-    window.addEventListener('click', () => {
+    document.addEventListener('DOMContentLoaded', () => {
       const music = document.getElementById("bg-music");
-      music.play().catch((e) => {
-        console.log("Reproducción bloqueada hasta interacción");
+
+      music.play().catch(() => {
+        const activateAudio = () => {
+          music.play().catch(err => console.log("Reproducción bloqueada:", err));
+          document.removeEventListener('click', activateAudio);
+          document.removeEventListener('touchstart', activateAudio);
+        };
+
+        document.addEventListener('click', activateAudio);
+        document.addEventListener('touchstart', activateAudio);
       });
     });
   </script>
