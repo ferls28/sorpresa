@@ -10,8 +10,8 @@
   <div class="message">te amo</div>
   <div id="bubbles-text"></div>
 
-  <!-- Audio -->
-  <audio id="bg-music" autoplay loop>
+  <!-- Audio SIN autoplay -->
+  <audio id="bg-music" loop>
     <source src="audio/recurso.mp3" type="audio/mpeg">
     Tu navegador no soporta audio HTML5.
   </audio>
@@ -24,16 +24,14 @@
     document.addEventListener('DOMContentLoaded', () => {
       const music = document.getElementById("bg-music");
 
-      music.play().catch(() => {
-        const activateAudio = () => {
-          music.play().catch(err => console.log("Reproducción bloqueada:", err));
-          document.removeEventListener('click', activateAudio);
-          document.removeEventListener('touchstart', activateAudio);
-        };
+      const activateAudio = () => {
+        music.play().catch(err => console.log("Reproducción bloqueada:", err));
+        document.removeEventListener('click', activateAudio);
+        document.removeEventListener('touchstart', activateAudio);
+      };
 
-        document.addEventListener('click', activateAudio);
-        document.addEventListener('touchstart', activateAudio);
-      });
+      document.addEventListener('click', activateAudio);
+      document.addEventListener('touchstart', activateAudio);
     });
   </script>
 </body>
